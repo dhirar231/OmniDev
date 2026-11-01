@@ -1,0 +1,32 @@
+---
+interface Props {
+  footer?: boolean;
+}
+const { footer = false } = Astro.props;
+---
+
+<a
+  class:list={['logo', { 'footer-logo': footer }]}
+  href="#home"
+  aria-label="Omni Dev home"
+>
+  <svg
+    width="36"
+    height="36"
+    viewBox="0 0 36 36"
+    fill="none"
+    aria-hidden="true"
+  >
+    <path
+      d="M18 3 32 11v14L18 33 4 25V11L18 3Z"
+      stroke="currentColor"
+      stroke-width="2"
+    />
+    <path d="m11 14 7-4 7 4v8l-7 4-7-4v-8Z" fill="currentColor" />
+    <path d="m18 16 4 2-4 2-4-2 4-2Z" fill="#14241f" />
+  </svg>
+  <span>
+    omni<span class="logo-light">dev</span>
+    <span class="logo-dot">.</span>
+  </span>
+</a>

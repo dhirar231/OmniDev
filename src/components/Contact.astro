@@ -1,0 +1,113 @@
+---
+const email = import.meta.env.PUBLIC_CONTACT_EMAIL?.trim() || '';
+---
+
+<section
+  id="contact"
+  class="contact section-pad"
+  aria-labelledby="contact-heading"
+>
+  <div class="container contact-grid">
+    <div>
+      <p class="eyebrow">
+        <span class="section-number">07 /</span> LET’S MAKE IT REAL
+      </p>
+      <h2 id="contact-heading">
+        Your next chapter
+        <br />
+        starts with
+        <br />
+        <span class="serif">a conversation.</span>
+      </h2>
+      <p>
+        Something to simplify? An idea to bring to life?
+        <br />
+        Tell us what you have in mind.
+      </p>
+      <div class="contact-note">
+        <span aria-hidden="true">↗</span>
+        <p>
+          Business software or your next product.
+          <br />A clear starting point is all you need.
+        </p>
+      </div>
+    </div>
+    <div class="contact-panel">
+      <h3>A little about your idea</h3>
+      <p class="form-note" id="contact-help">
+        {email
+          ? 'Prepare an email in your own mail app. Nothing is sent automatically.'
+          : 'Contact setup pending: our public email is not configured yet. You can prepare and download a project brief below. It will not be sent.'}
+      </p>
+      <form id="brief-form" data-email={email} aria-describedby="contact-help">
+        <div class="form-row">
+          <label>
+            Your name
+            <input
+              name="name"
+              autocomplete="name"
+              required
+              maxlength="120"
+              placeholder="Alex Morgan"
+            />
+          </label>
+          <label>
+            Email address
+            <input
+              name="email"
+              type="email"
+              autocomplete="email"
+              required
+              maxlength="254"
+              placeholder="alex@company.com"
+            />
+          </label>
+        </div>
+        <label>
+          What are you looking for?
+          <select name="interest">
+            <option>Custom business software</option>
+            <option>A web or mobile product</option>
+            <option>Information about our products</option>
+            <option>Something else</option>
+          </select>
+        </label>
+        <label>
+          Tell us about your project
+          <textarea
+            name="message"
+            rows="4"
+            required
+            maxlength="5000"
+            placeholder="The idea, the challenge, and what a good outcome looks like…"
+          ></textarea>
+        </label>
+        <p class="privacy-note">
+          Your details stay in this browser until you choose to open your email
+          app or save a brief. No tracking or form service is connected.
+        </p>
+        <button type="submit" class="button button-dark">
+          {email ? 'Prepare Project Email' : 'Download Project Brief'}{' '}
+          <span aria-hidden="true">↗</span>
+        </button>
+        <p id="form-status" role="status" class="form-status"></p>
+      </form>
+      <noscript>
+        <p>
+          JavaScript is needed to prepare your brief.
+          {email && (
+            <>
+              {' '}
+              You can also <a href={`mailto:${email}`}>email Omni Dev</a>.
+            </>
+          )}
+        </p>
+      </noscript>
+      {email && (
+        <a class="direct-email" href={`mailto:${email}`}>
+          {email} ↗
+        </a>
+      )}
+    </div>
+  </div>
+</section>

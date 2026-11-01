@@ -1,0 +1,104 @@
+---
+import type { projects } from '../data/projects';
+interface Props {
+  project: (typeof projects)[number];
+}
+const { project: p } = Astro.props;
+---
+
+<article class="project-card" data-category={p.category} id={p.id}>
+  <div class:list={['project-visual', p.theme]} aria-hidden="true">
+    <div class="visual-top">
+      <span>{p.name}</span>
+      <span>↗</span>
+    </div>
+    {p.id === 'university' ? (
+      <div class="mini-app">
+        <div class="mini-sidebar">
+          <b>u.</b>
+          <i></i>
+          <i></i>
+          <i></i>
+        </div>
+        <div class="mini-content">
+          <div class="mini-greeting">
+            Your next chapter
+            <br />
+            <strong>starts here.</strong>
+          </div>
+          <div class="mini-stats">
+            <span>
+              Transfers
+              <br />
+              <b>↗</b>
+            </span>
+            <span>
+              Reorientation
+              <br />
+              <b>↗</b>
+            </span>
+          </div>
+          <div class="mini-row">
+            <span class="mini-dot"></span> Application workspace <span>→</span>
+          </div>
+        </div>
+      </div>
+    ) : p.id === 'operations' ? (
+      <div class="orbit-map">
+        <div class="map-ring"></div>
+        <div class="map-ring second"></div>
+        <div class="map-hub">O</div>
+        <span class="map-node n1">↗ &nbsp; Trips</span>
+        <span class="map-node n2">◎ &nbsp; Customers</span>
+        <span class="map-node n3">≋ &nbsp; Suppliers</span>
+        <span class="map-node n4">▤ &nbsp; Expenses</span>
+      </div>
+    ) : (
+      <div class="invoice-paper">
+        <div class="paper-brand">
+          facterly<span>✳</span>
+        </div>
+        <div class="paper-title">FACTURE</div>
+        <div class="paper-lines">
+          <i></i>
+          <i></i>
+        </div>
+        <div class="paper-table">
+          <span>Description</span>
+          <span>Montant</span>
+          <i></i>
+          <i></i>
+          <i></i>
+          <i></i>
+        </div>
+        <div class="paper-end">Simple. Local. Yours.</div>
+        <div class="pdf-badge">↓ PDF</div>
+      </div>
+    )}
+    <span class="visual-caption">ILLUSTRATIVE CONCEPT</span>
+  </div>
+  <div class="project-body">
+    <p class="eyebrow">{p.type}</p>
+    <h3>{p.title}</h3>
+    <p>{p.description}</p>
+    <ul class="tags" aria-label="Technologies">
+      {p.tags.map((tag) => (
+        <li>{tag}</li>
+      ))}
+    </ul>
+    <details>
+      <summary>
+        Inside the project <span aria-hidden="true">+</span>
+      </summary>
+      <div class="project-detail">
+        <h4>{p.name}</h4>
+        <p>{p.detail}</p>
+        <ul>
+          {p.features.map((feature) => (
+            <li>{feature}</li>
+          ))}
+        </ul>
+      </div>
+    </details>
+  </div>
+</article>
